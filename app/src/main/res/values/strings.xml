@@ -2,4 +2,20 @@
     <string name="app_name">Med Pay Assignment</string>
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="today_s_total">Today\'s Total</string>
+    <string name="yesterday_total">Yesterday\'s Total</string>
+
+
+    <string name="currency">₹</string>
+    <string name="bill_amount">Bill Amount</string>
+    <string name="txt_insurance">Insurance</string>
+    <string name="txt_upi">UPI</string>
+    <string name="txt_card">Card</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="back">Back</string>
+    <string name="txt_submit">Submit</string>
+    <string name="txt_cash">Cash</string>
+    <string name="err_invalid_phone">Please enter valid mobile number</string>
+    <string name="error_try_again">Please try again</string>
 </resources>

@@ -11,13 +11,13 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.medpay.R;
 
-public class SuccessDialog extends DialogFragment {
+public class LoaderDialog extends DialogFragment {
 
-    private static SuccessDialog dialog = null;
+    private static LoaderDialog dialog = null;
 
-    public static SuccessDialog getLoaderDialog() {
+    public static LoaderDialog getLoaderDialog() {
         if (dialog == null) {
-            dialog = new SuccessDialog();
+            dialog = new LoaderDialog();
         }
         return dialog;
     }
@@ -34,9 +34,6 @@ public class SuccessDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.dialog_loader, container, false);
-
-//        toolbar = view.findViewById(R.id.toolbar);
-
         return view;
     }
 
@@ -44,13 +41,6 @@ public class SuccessDialog extends DialogFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        toolbar.setNavigationOnClickListener(v -> dismiss());
-//        toolbar.setTitle("Some Title");
-//        toolbar.inflateMenu(R.menu.example_dialog);
-//        toolbar.setOnMenuItemClickListener(item -> {
-//            dismiss();
-//            return true;
-//        });
     }
 
     @Override

@@ -7,4 +7,120 @@
     tools:context=".ui.home.fragments.home.HomeFragment">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary_variant"
+        android:padding="@dimen/padding_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvWelcomeUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_large"
+            android:text="@string/welcome_user"
+            android:textColor="@color/colorPrimaryVariant"
+            android:textSize="@dimen/text_small"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvTodayTotalLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvTodayTotalLabel" />
+
+
+        <TextView
+            android:id="@+id/tvTodayTotalLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/today_s_total"
+            android:textColor="@color/white_grey"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintEnd_toStartOf="@+id/tvYesterdayTotalLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcomeUser" />
+
+
+        <TextView
+            android:id="@+id/tvTodayTotalValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="00.00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_x_large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvYesterdayTotalLabel"
+            app:layout_constraintStart_toStartOf="@+id/tvTodayTotalLabel"
+            app:layout_constraintTop_toBottomOf="@+id/tvTodayTotalLabel" />
+
+
+        <TextView
+            android:id="@+id/tvYesterdayTotalLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/yesterday_total"
+            android:textColor="@color/white_grey"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTodayTotalLabel"
+            app:layout_constraintTop_toTopOf="@id/tvTodayTotalLabel" />
+
+        <TextView
+            android:id="@+id/tvYesterdayTotalValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="00.00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_x_large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvYesterdayTotalLabel"
+            app:layout_constraintTop_toBottomOf="@+id/tvYesterdayTotalLabel" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHomeList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        tools:listitem="@layout/list_item_home_fragment_list_item" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBillAmount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default"
+        android:hint="@string/bill_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvHomeList">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietBillAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_xx_large" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilBillAmount" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

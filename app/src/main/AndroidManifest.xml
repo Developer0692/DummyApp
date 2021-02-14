@@ -11,6 +11,7 @@
         android:theme="@style/Theme.MedPay.NoTitle">
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:theme="@style/Theme.MedPay.FullScreen"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

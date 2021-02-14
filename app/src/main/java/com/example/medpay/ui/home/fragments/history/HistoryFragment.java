@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.medpay.R;
+import com.example.medpay.ui.base.BaseFragment;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends BaseFragment {
 
     private HistoryViewModel dashboardViewModel;
 
@@ -26,12 +26,12 @@ public class HistoryFragment extends Fragment {
 
 
     //=================== Private Methods ===================
-    private void initView(View fragmentView){
+    private void initView(View fragmentView) {
 
         setDataObservers();
     }
 
-    private void setDataObservers(){
+    private void setDataObservers() {
 
     }
 
@@ -40,13 +40,6 @@ public class HistoryFragment extends Fragment {
 
     //=================== Override Methods ===================
     //=================== Override Methods ===================
-
-
-
-
-
-
-
 
 
     //=================== Public Methods ===================
