@@ -28,11 +28,11 @@ public class BaseFragment extends Fragment {
 
 
     public void showLoader(boolean show, String message) {
-        if (show) {
-            LoaderDialog.getLoaderDialog().show(getChildFragmentManager(), message);
-        } else {
-            LoaderDialog.getLoaderDialog().dismiss();
-        }
+//        if (show) {
+//            LoaderDialog.getLoaderDialog().show(getParentFragmentManager(), message);
+//        } else {
+//            LoaderDialog.getLoaderDialog().dismiss();
+//        }
     }
 
     public void showLoader(boolean show) {

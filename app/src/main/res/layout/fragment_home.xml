@@ -11,7 +11,7 @@
         android:id="@+id/header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary_variant"
+        android:background="@color/colorPrimaryVariant"
         android:padding="@dimen/padding_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/padding_large"
             android:text="@string/welcome_user"
-            android:textColor="@color/colorPrimaryVariant"
             android:textSize="@dimen/text_small"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tvTodayTotalLabel"
@@ -109,6 +108,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietBillAmount"
             android:layout_width="match_parent"
+            android:inputType="numberDecimal"
+            android:maxLength="15"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_xx_large" />
 

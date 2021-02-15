@@ -11,26 +11,21 @@
         android:theme="@style/Theme.MedPay.NoTitle">
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.MedPay.FullScreen"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MedPay.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.home.HomeActivity"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name=".ui.paymentStatus.PaymentStatusActivity"
-            android:noHistory="true"
+            android:name=".ui.paymentSuccess.PaymentSuccessActivity"
             android:screenOrientation="portrait" />
-
-
     </application>
 
 </manifest>

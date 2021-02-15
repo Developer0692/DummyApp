@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.medpay.R;
@@ -39,8 +40,8 @@ public class HomeFragment extends BaseFragment {
     private void initView(View fragmentView) {
         sharedHomeViewModel =
                 new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        sharedHomeViewModel.getAllTypeOfTransaction();
         tietBillAmount = fragmentView.findViewById(R.id.tietBillAmount);
-        showSelectPaymentMethodFragment();
         setUpObservers();
     }
 
@@ -74,6 +75,7 @@ public class HomeFragment extends BaseFragment {
         sharedHomeViewModel.mPaymentMode.observe(getViewLifecycleOwner(), integer -> {
             mPaymentMode = integer;
         });
+
     }
 
     private void changeFragmentToMobileFragment(int integer) {
@@ -113,6 +115,13 @@ public class HomeFragment extends BaseFragment {
 
 
     //=================== Override Methods ===================
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showSelectPaymentMethodFragment();
+        tietBillAmount.setText("");
+    }
 
 
     //=================== Override Methods ===================

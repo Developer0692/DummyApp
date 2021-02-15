@@ -1,12 +1,12 @@
 package com.example.medpay.ui.home;
 
-import android.util.Log;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.medpay.MedPayApp;
+import com.example.medpay.database.LocalDataBase;
 import com.example.medpay.database.dao.PaymentDao;
 import com.example.medpay.pojo.PaymentData;
 import com.example.medpay.utils.dateTimeUtils.DateUtils;
@@ -16,8 +16,11 @@ import java.util.List;
 
 public class HomeViewModel extends ViewModel {
 
-    private PaymentDao paymentDao = MedPayApp.localDataBase.getPaymentDao();
+    private LocalDataBase localDataBase;
+    private PaymentDao paymentDao;
 
+
+    public double paymentAmount;
     public MutableLiveData<Boolean> userWantToSubmit = new MutableLiveData<>();
     public MutableLiveData<Boolean> mobileFragmentBackClicked = new MutableLiveData<>();
     public MutableLiveData<Integer> mPaymentMode = new MutableLiveData<>();
@@ -29,6 +32,27 @@ public class HomeViewModel extends ViewModel {
     public MutableLiveData<String> todayTransactionsTotal = new MutableLiveData<>();
 
     public String userMobileNumber;
+
+    public void viewCreated(Context context) {
+        localDataBase = LocalDataBase.getDatabase(context);
+        paymentDao = localDataBase.getPaymentDao();
+    }
+
+    public int getPaymentMode(){
+       if(mPaymentMode.getValue()!=null){
+           return mPaymentMode.getValue();
+       }else{
+           return -1;
+       }
+    }
+
+    public void getAllTypeOfTransaction() {
+        localDataBase.getQueryExecutor().execute(() -> {
+            getAllTransactions();
+            getTodayTransactions();
+            getYesterdayTransactions();
+        });
+    }
 
     public void getAllTransactions() {
         allTransactions = paymentDao.getAll();
@@ -86,17 +110,22 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void submitData(PaymentData data) {
-        Log.e("PAYMENT amount", data.amount + "");
-        Log.e("PAYMENT date", data.date + "");
-        Log.e("PAYMENT milis", data.timeInMilliSeconds + "");
-        Log.e("PAYMENT mode", data.transactionType + "");
+        paymentAmount=data.amount;
+        localDataBase.getTransactionExecutor().execute(() -> {
+            paymentDao.insertAll(data);
+        });
+
+        paymentDataSubmitSuccess.postValue(true);
+
     }
 
 
-    private void resetData() {
+    public void resetData() {
         mobileFragmentBackClicked.postValue(false);
         userWantToSubmit.postValue(false);
         mPaymentMode.postValue(-1);
+        paymentDataSubmitSuccess.postValue(false);
+        paymentAmount=0;
     }
 
 }

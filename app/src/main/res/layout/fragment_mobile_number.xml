@@ -38,6 +38,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPhoneNumber"
             android:layout_width="match_parent"
+            android:inputType="phone"
+            android:maxLength="13"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="@dimen/text_xx_large" />
