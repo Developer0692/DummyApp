@@ -9,7 +9,7 @@ import com.example.medpay.database.LocalDataBase;
 public class MedPayApp extends Application {
 
 
-    public LocalDataBase localDataBase;
+    public static LocalDataBase localDataBase;
 
     @Override
     public void onCreate() {
@@ -17,4 +17,6 @@ public class MedPayApp extends Application {
         localDataBase = Room.databaseBuilder(getApplicationContext(),
                 LocalDataBase.class, "payment_database").build();
     }
+
+
 }

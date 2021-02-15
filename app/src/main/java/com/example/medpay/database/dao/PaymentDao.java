@@ -1,5 +1,7 @@
 package com.example.medpay.database.dao;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,10 +15,10 @@ import java.util.List;
 public interface PaymentDao {
 
     @Query("Select * from payment_data")
-    List<PaymentData> getAll();
+    LiveData<List<PaymentData>> getAll();
 
     @Query("Select * from payment_data where timeInMilliSeconds = :timeInMilli")
-    List<PaymentData> getDataForGivenDate(Long timeInMilli);
+    LiveData<List<PaymentData>> getDataForGivenDate(Long timeInMilli);
 
     @Insert
     void insertAll(PaymentData... paymentData);

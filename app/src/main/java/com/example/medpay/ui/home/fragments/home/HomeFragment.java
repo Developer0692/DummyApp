@@ -35,7 +35,6 @@ public class HomeFragment extends BaseFragment {
         return root;
     }
 
-
     //=================== Private Methods ===================
     private void initView(View fragmentView) {
         sharedHomeViewModel =
@@ -62,7 +61,11 @@ public class HomeFragment extends BaseFragment {
                 showSelectPaymentMethodFragment();
             }
         });
-        sharedHomeViewModel.mPaymentMode.observe(getViewLifecycleOwner(), this::changeFragmentToMobileFragment);
+        sharedHomeViewModel.mPaymentMode.observe(getViewLifecycleOwner(), integer -> {
+            if (integer != null) {
+                changeFragmentToMobileFragment(integer);
+            }
+        });
         sharedHomeViewModel.userWantToSubmit.observe(getViewLifecycleOwner(), userWantToSubmit -> {
             if (userWantToSubmit) {
                 initiateDataSubmission();
@@ -73,7 +76,7 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    private void changeFragmentToMobileFragment(Integer integer) {
+    private void changeFragmentToMobileFragment(int integer) {
         Bundle bundle = new Bundle();
         bundle.putInt(AppConstants.BundleParamsKeys.PAYMENT_MODE, integer);
         showFragment(MobileNumberFragment.newInstance(bundle));

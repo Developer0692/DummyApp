@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.medpay.R;
 import com.example.medpay.ui.base.BaseFragment;
@@ -68,10 +68,12 @@ public class SelectPaymentMethodFragment extends BaseFragment implements View.On
     //========== Private methods ===================
 
     private void initView(View fragmentView) {
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         llInsurance = fragmentView.findViewById(R.id.llInsurance);
         llCard = fragmentView.findViewById(R.id.llCard);
         llCash = fragmentView.findViewById(R.id.llCash);
         llUpi = fragmentView.findViewById(R.id.llUpi);
+
 
         setEventListeners();
         setUpObservers();
@@ -110,9 +112,8 @@ public class SelectPaymentMethodFragment extends BaseFragment implements View.On
 
 
     private void setUpObservers() {
-        homeViewModel.mPaymentMode.observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
+        homeViewModel.mPaymentMode.observe(getViewLifecycleOwner(), integer -> {
+            if (integer != null) {
                 changePaymentCardsBackGround(integer);
             }
         });
