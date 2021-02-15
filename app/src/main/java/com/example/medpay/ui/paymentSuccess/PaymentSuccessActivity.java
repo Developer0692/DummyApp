@@ -45,6 +45,7 @@ public class PaymentSuccessActivity extends BaseActivity {
         if (bundle != null) {
             String amount = String.format(Locale.getDefault(), "%s %f", getString(R.string.currency),
                     bundle.getDouble(AppConstants.BundleParamsKeys.PAYMENT_AMOUNT, 0.00));
+            amount = String.format(Locale.getDefault(),"%.2f", amount);
             tvAmount.setText(amount);
 
             tvPaymentMethod.setText(getPaymentMode(bundle.getInt(AppConstants.BundleParamsKeys.PAYMENT_MODE, -1)));
