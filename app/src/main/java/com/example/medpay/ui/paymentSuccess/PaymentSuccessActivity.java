@@ -9,6 +9,7 @@ import com.example.medpay.ui.base.BaseActivity;
 import com.example.medpay.utils.AppConstants;
 import com.example.medpay.utils.dateTimeUtils.DateUtils;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -43,10 +44,10 @@ public class PaymentSuccessActivity extends BaseActivity {
     private void getIntentData() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String amount = String.format(Locale.getDefault(), "%s %f", getString(R.string.currency),
-                    bundle.getDouble(AppConstants.BundleParamsKeys.PAYMENT_AMOUNT, 0.00));
-            amount = String.format(Locale.getDefault(),"%.2f", amount);
-            tvAmount.setText(amount);
+            double amount = bundle.getDouble(AppConstants.BundleParamsKeys.PAYMENT_AMOUNT, 0.00);
+            String amountString = String.format(Locale.getDefault(),
+                    "%s %s", getString(R.string.currency), getFormattedValues(amount));
+            tvAmount.setText(amountString);
 
             tvPaymentMethod.setText(getPaymentMode(bundle.getInt(AppConstants.BundleParamsKeys.PAYMENT_MODE, -1)));
 
@@ -55,10 +56,11 @@ public class PaymentSuccessActivity extends BaseActivity {
                 phone = String.format("xxxxxx-%s", phone.substring(phone.length() - 5));
                 tvPhone.setText(phone);
             }
-
         }
+    }
 
-
+    private String getFormattedValues(double value) {
+        return new DecimalFormat("##.##").format(value);
     }
 
 
